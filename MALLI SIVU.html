@@ -1,0 +1,193 @@
+<!doctype html>
+<html>
+
+<head>
+        
+<title>
+	malli
+</title>
+</head>
+
+       <style>
+       #kabum {
+           font-size : 35px;
+           font-family : Comic Sans MS;
+           color : #0032F7;
+           background : #ff0000
+           width : 250px;
+           height : 60px;
+           padding : 30px;
+           border-radius : 10px;
+           position : absolute;
+           top : 30px;
+           left : 350px;
+
+	}
+           
+               #linkit {
+           font-size : 25px  ;
+          
+           width : 100px;
+           height : 60px;
+           padding : 30px;
+           
+           position : absolute;
+           top : 130px;
+           left :50px;
+ 
+     }
+    
+     #keskilaatikko   {
+           width : 250px;
+           height : 60px;
+           padding : 10px;
+           font-size : 20px;
+           position : absolute;
+           top : 250px;
+           left : 250px;
+           width : 600px;
+           height : 300px;
+           border : 1px solid #000000;
+           border-radius : 10px;
+           background-color : rgba(200,200,200,0.5);
+           overflow:auto;
+
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hieno Verkkosivu</title>
+    <style>
+        /* Perusasetukset ja tausta-animaatio */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1f4068, #162447, #1b1a1a);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+            overflow: hidden;
+            color: #ffffff;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Lasiefekti-laatikko (Glassmorphism) */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            max-width: 450px;
+            width: 90%;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Tekstityylit */
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #00dbde, #fc00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #d1d5db;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        /* Hieno nappi hover-efektillä */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #ffffff;
+            background: linear-gradient(135deg, #00dbde, #fc00ff);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(252, 0, 255, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(252, 0, 255, 0.7);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+
+       }
+
+
+       .linkki:link {
+               color : ff0000;
+               text-decoration : none;
+       }
+
+
+       .linkki:visited {
+               color : 00ffff;
+               text-decoration : none;
+       }
+
+       .linkki:hover {
+            color : 00ffff;
+            text-decoration : underline;
+            font-weight : bold;
+       }
+            
+
+	</style>
+
+<body>
+
+        <div id="kabum">
+        Jotain
+        </div>
+       
+        <div id="linkit">
+        <a class="linkki" href="https://matikki.fi/">https://matikki.fi/</a>
+        <br />
+        </div>
+
+	<div id="keskilaatikko">
+        Jotain Jotain Jotain Jotain Jotain Jotain
+        </div>
+
+
+
+
+</body>
+
+
+</html>

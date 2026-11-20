@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="fi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porsche Finland | Unelmien Suorituskykyä</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        porsche: {
+                            red: '#D5001C',
+                            darkRed: '#990014',
+                            gold: '#C5A059',
+                            black: '#0E0E10',
+                            cardBg: '#18181C',
+                            cardHover: '#222228',
+                            silver: '#E2E8F0',
+                            accent: '#FF2A3B'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #0A0A0C;
+            color: #F1F5F9;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .porsche-font {
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.12em;
+        }
+
+        /* Glassmorphism background effect */
+        .glass-panel {
+            background: rgba(24, 24, 28, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-nav {
+            background: rgba(10, 10, 12, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        /* Glow effects */
+        .red-glow {
+            box-shadow: 0 0 25px rgba(213, 0, 28, 0.35);
+        }
+        
+        .red-glow-hover:hover {
+            box-shadow: 0 0 30px rgba(213, 0, 28, 0.55);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0E0E10;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2D2D35;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D5001C;
+        }
+
+        /* Hero gradient mesh background */
+        .hero-bg {
+            background: radial-gradient(circle at 70% 30%, rgba(213, 0, 28, 0.15) 0%, transparent 60%),
+                        radial-gradient(circle at 20% 80%, rgba(197, 160, 89, 0.08) 0%, transparent 50%),
+                        #0A0A0C;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #FFFFFF 30%, #A1A1AA 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .red-gradient-text {
+            background: linear-gradient(135deg, #FF334B 0%, #D5001C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Car paint metallic sheen overlay */
+        .paint-swatch {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .paint-swatch:hover {
+            transform: scale(1.15);
+        }
+
+        /* Custom radio input styling */
+        .custom-radio:checked + label {
+            border-color: #D5001C;
+            background-color: rgba(213, 0, 28, 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-porsche-red selection:text-white">
+
+    <!-- NAVIGAATIO -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Porsche Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-9 h-10 bg-gradient-to-b from-porsche-gold to-yellow-700 rounded-sm p-[1px] flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+                    <div class="w-full h-full bg-black flex flex-col items-center justify-center p-1 relative overflow-hidden">
+                        <span class="text-[9px] font-black tracking-widest text-porsche-gold porsche-font">PORSCHE</span>
+                        <div class="w-full h-[1px] bg-porsche-gold my-0.5"></div>
+                        <i class="fa-solid fa-shield-halved text-porsche-red text-xs"></i>
+                    </div>
+                </div>
+                <span class="porsche-font text-xl font-extrabold tracking-widest text-white group-hover:text-porsche-red transition-colors">
+                    PORSCHE <span class="text-xs font-normal text-gray-400 tracking-normal block -mt-1">FINLAND</span>
+                </span>
+            </a>
+
+            <!-- Työpöydän Navigaatiolinkit -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
+                <a href="#hero" class="hover:text-white transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-porsche-red hover:after:w-full after:transition-all">Koti</a>
+                <a href="#mallisto" class="hover:text-white transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-porsche-red hover:after:w-full after:transition-all">Mallisto</a>
+                <a href="#konfiguraattori" class="hover:text-white transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-porsche-red hover:after:w-full after:transition-all">Konfiguraattori</a>
+                <a href="#dna" class="hover:text-white transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-porsche-red hover:after:w-full after:transition-all">Teknologia</a>
+                <a href="#koeajo" class="hover:text-white transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-porsche-red hover:after:w-full after:transition-all">Koeajo</a>
+            </nav>
+
+            <!-- CTA & Sound Trigger -->
+            <div class="hidden md:flex items-center gap-4">
+                <button onclick="playEngineSound()" title="Kuuntele moottorin ääni" class="px-3 py-2 bg-porsche-cardBg hover:bg-porsche-cardHover text-gray-300 hover:text-white rounded-lg border border-gray-700 text-xs flex items-center gap-2 transition-all active:scale-95">
+                    <i class="fa-solid fa-volume-high text-porsche-red animate-pulse"></i>
+                    <span>Käynnistä ääni</span>
+                </button>
+                
+                <a href="#koeajo" class="px-5 py-2.5 bg-porsche-red hover:bg-red-700 text-white font-semibold text-sm rounded-lg shadow-md red-glow-hover transition-all flex items-center gap-2">
+                    <span>Varaa Koeajo</span>
+                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-gray-300 hover:text-white text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars" id="menuIcon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-porsche-black/95 border-b border-gray-800 px-6 py-6 space-y-4 text-base">
+            <a href="#hero" class="mobile-link block text-gray-300 hover:text-white py-2">Koti</a>
+            <a href="#mallisto" class="mobile-link block text-gray-300 hover:text-white py-2">Mallisto</a>
+            <a href="#konfiguraattori" class="mobile-link block text-gray-300 hover:text-white py-2">Konfiguraattori</a>
+            <a href="#dna" class="mobile-link block text-gray-300 hover:text-white py-2">Teknologia</a>
+            <a href="#koeajo" class="mobile-link block text-gray-300 hover:text-white py-2">Koeajo</a>
+            <div class="pt-4 border-t border-gray-800 flex flex-col gap-3">
+                <button onclick="playEngineSound()" class="w-full py-2.5 bg-porsche-cardBg text-gray-200 rounded-lg border border-gray-700 text-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-volume-high text-porsche-red"></i>
+                    <span>Käynnistä Moottoriääni</span>
+                </button>
+                <a href="#koeajo" class="mobile-link text-center py-3 bg-porsche-red text-white font-semibold rounded-lg shadow-md">
+                    Varaa Koeajo
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO OSIO -->
+    <section id="hero" class="relative pt-32 pb-20 md:pt-44 md:pb-32 min-h-screen flex items-center hero-bg overflow-hidden">
+        <!-- Background Canvas Grid Animation -->
+        <canvas id="heroCanvas" class="absolute inset-0 pointer-events-none opacity-40"></canvas>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Text Content -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-porsche-red/10 border border-porsche-red/30 text-porsche-red text-xs font-semibold tracking-wider uppercase">
+                        <span class="w-2 h-2 rounded-full bg-porsche-red animate-ping"></span>
+                        Täysin Uusi Porsche 911 GT3 RS & Taycan S
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight porsche-font text-white leading-none">
+                        SIELUNRAUHASTA <br>
+                        <span class="red-gradient-text">SYKKIVÄÄN</span> <br>
+                        SUORITUSKYKYYN.
+                    </h1>
+                    
+                    <p class="text-gray-400 text-base sm:text-lg max-w-xl leading-relaxed">
+                        Yhdistämme vuosikymmenten moottoriurheiluperinnön ja tulevaisuuden sähköisen innovaation. Koe Porsche-malliston vertaansa vailla oleva ajonautinto Suomen teillä.
+                    </p>
+
+                    <!-- Buttons -->
+                    <div class="flex flex-wrap items-center gap-4 pt-4">
+                        <a href="#konfiguraattori" class="px-8 py-4 bg-porsche-red hover:bg-red-700 text-white font-bold rounded-xl shadow-lg red-glow transition-all flex items-center gap-3">
+                            <span>Rakenna Omasi</span>
+                            <i class="fa-solid fa-sliders text-sm"></i>
+                        </a>
+                        <a href="#mallisto" class="px-8 py-4 bg-porsche-cardBg hover:bg-porsche-cardHover text-white font-semibold rounded-xl border border-gray-700 hover:border-gray-500 transition-all flex items-center gap-2">
+                            <span>Tutustu Mallistoon</span>
+                            <i class="fa-solid fa-arrow-down text-sm"></i>
+                        </a>
+                    </div>
+
+                    <!-- Quick Specs Ticker -->
+                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-gray-800/80 max-w-lg">
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-black text-white porsche-font">2.7 s</span>
+                            <span class="text-xs text-gray-400 uppercase tracking-wider">0–100 km/h</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-black text-porsche-red porsche-font">952 HV</span>
+                            <span class="text-xs text-gray-400 uppercase tracking-wider">Maksimiteho</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-black text-white porsche-font">800 V</span>
+                            <span class="text-xs text-gray-400 uppercase tracking-wider">Pikalataus</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Visual Hero Render -->
+                <div class="lg:col-span-5 relative flex justify-center">
+                    <div class="relative w-full max-w-md lg:max-w-none">
+                        <!-- Glowing backdrop ring -->
+                        <div class="absolute -inset-4 bg-gradient-to-r from-porsche-red/30 to-porsche-gold/20 rounded-full blur-3xl opacity-60"></div>
+                        
+                        <!-- Hero Interactive Car Card Showcase -->
+                        <div class="relative glass-panel rounded-2xl p-6 border border-gray-800 shadow-2xl overflow-hidden">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <span class="text-xs text-porsche-gold tracking-widest uppercase font-bold">Lippulaiva</span>
+                                    <h3 class="text-2xl font-bold porsche-font text-white">911 GT3 RS</h3>
+                                </div>
+                                <span class="px-3 py-1 bg-white/10 text-xs rounded-full font-mono text-gray-300">2026 Edition</span>
+                            </div>
+
+                            <!-- Dynamic Vector Styling Car Silhouette Preview -->
+                            <div class="py-8 my-2 relative flex items-center justify-center">
+                                <svg id="heroCarSvg" class="w-full h-48 drop-shadow-[0_15px_15px_rgba(0,0,0,0.8)] transition-all duration-500" viewBox="0 0 500 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Car Shadow -->
+                                    <ellipse cx="250" cy="180" rx="210" ry="12" fill="#000000" opacity="0.8"/>
+                                    <!-- Car Body Path -->
+                                    <path id="heroCarBody" d="M 40 145 C 50 140, 70 120, 110 115 C 150 110, 200 80, 270 75 C 340 70, 400 90, 440 120 C 460 130, 470 145, 465 155 C 460 160, 40 160, 40 145 Z" fill="#D5001C" transition="fill 0.4s ease"/>
+                                    <!-- Rear Spoiler GT3 RS style -->
+                                    <path d="M 50 115 L 30 75 L 75 75 L 85 110 Z" fill="#111" stroke="#333" stroke-width="2"/>
+                                    <path d="M 25 75 L 90 73 L 90 68 L 25 68 Z" fill="#D5001C" id="heroCarSpoiler"/>
+                                    <!-- Cabin / Glass -->
+                                    <path d="M 160 105 C 190 82, 250 78, 320 85 C 360 92, 390 115, 395 120 L 160 120 Z" fill="#1E293B" opacity="0.95"/>
+                                    <!-- Glass highlight -->
+                                    <path d="M 200 100 C 240 85, 290 85, 330 92 L 310 115 L 210 115 Z" fill="#FFFFFF" opacity="0.15"/>
+                                    <!-- Wheel Arches -->
+                                    <circle cx="125" cy="155" r="34" fill="#0E0E10"/>
+                                    <circle cx="375" cy="155" r="34" fill="#0E0E10"/>
+                                    <!-- Wheels & Rim details -->
+                                    <circle cx="125" cy="155" r="26" fill="#262626" stroke="#C5A059" stroke-width="4"/>
+                                    <circle cx="375" cy="155" r="26" fill="#262626" stroke="#C5A059" stroke-width="4"/>
+                                    <!-- Brake Caliper Red -->
+                                    <rect x="110" y="145" width="8" height="18" fill="#D5001C" rx="2"/>
+                                    <rect x="360" y="145" width="8" height="18" fill="#D5001C" rx="2"/>
+                                    <!-- Wheel Spokes -->
+                                    <path d="M 125 130 L 125 180 M 100 155 L 150 155 M 107 137 L 143 173 M 107 173 L 143 137" stroke="#94A3B8" stroke-width="2.5"/>
+                                    <path d="M 375 130 L 375 180 M 350 155 L 400 155 M 357 137 L 393 173 M 357 173 L 393 137" stroke="#94A3B8" stroke-width="2.5"/>
+                                    <!-- Headlight LED Matrix -->
+                                    <polygon points="430,128 450,132 445,140 425,135" fill="#38BDF8"/>
+                                    <circle cx="442" cy="133" r="3" fill="#FFFFFF" class="animate-pulse"/>
+                                    <!-- Door & Aero Lines -->
+                                    <path d="M 220 120 L 220 150 M 270 120 C 260 145, 300 150, 330 150" stroke="#000000" stroke-width="2" opacity="0.4"/>
+                                </svg>
+                            </div>
+
+                            <!-- Interactive Color Quick Switcher for Hero -->
+                            <div class="flex items-center justify-between pt-4 border-t border-gray-800">
+                                <span class="text-xs text-gray-400">Vaihda esittelyväriä:</span>
+                                <div class="flex gap-2">
+                                    <button onclick="changeHeroColor('#D5001C')" class="w-6 h-6 rounded-full bg-[#D5001C] border-2 border-white/50 focus:outline-none" title="Guards Red"></button>
+                                    <button onclick="changeHeroColor('#0E0E10')" class="w-6 h-6 rounded-full bg-[#0E0E10] border-2 border-white/30 focus:outline-none" title="Jet Black"></button>
+                                    <button onclick="changeHeroColor('#E2E8F0')" class="w-6 h-6 rounded-full bg-[#E2E8F0] border-2 border-white/30 focus:outline-none" title="Carrara White"></button>
+                                    <button onclick="changeHeroColor('#0047AB')" class="w-6 h-6 rounded-full bg-[#0047AB] border-2 border-white/30 focus:outline-none" title="Gentian Blue"></button>
+                                    <button onclick="changeHeroColor('#C5A059')" class="w-6 h-6 rounded-full bg-[#C5A059] border-2 border-white/30 focus:outline-none" title="Neodyme Gold"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- MALLISTO OSIO -->
+    <section id="mallisto" class="py-24 bg-porsche-black relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Header & Filters -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <span class="text-porsche-red text-sm font-bold tracking-widest uppercase">Tutustu Valikoimaan</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold porsche-font text-white mt-1">PORSCHE-MALLISTO</h2>
+                </div>
+                
+                <!-- Category Filter Buttons -->
+                <div class="flex flex-wrap gap-2 bg-porsche-cardBg p-1.5 rounded-xl border border-gray-800">
+                    <button onclick="filterModels('all')" class="filter-btn active-filter px-4 py-2 text-xs font-semibold rounded-lg transition-all bg-porsche-red text-white" data-filter="all">Kaikki</button>
+                    <button onclick="filterModels('sports')" class="filter-btn px-4 py-2 text-xs font-semibold rounded-lg text-gray-400 hover:text-white transition-all" data-filter="sports">Urheiluautot</button>
+                    <button onclick="filterModels('electric')" class="filter-btn px-4 py-2 text-xs font-semibold rounded-lg text-gray-400 hover:text-white transition-all" data-filter="electric">Täyssähkö</button>
+                    <button onclick="filterModels('suv')" class="filter-btn px-4 py-2 text-xs font-semibold rounded-lg text-gray-400 hover:text-white transition-all" data-filter="suv">SUV & Sedan</button>
+                </div>
+            </div>
+
+            <!-- Model Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="modelsGrid">
+                <!-- Autokortit luodaan dynnaamisesti JavaScriptillä -->
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERAKTIIVINEN KONFIGURAATTORI -->
+    <section id="konfiguraattori" class="py-24 bg-[#0A0A0C] border-t border-b border-gray-800/60 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-porsche-gold text-xs font-bold tracking-widest uppercase">Rakenna unelmiesi auto</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold porsche-font text-white mt-2">INTERAKTIIVINEN KONFIGURAATTORI</h2>
+                <p class="text-gray-400 mt-4 text-sm sm:text-base">
+                    Räätälöi Porschesi ulkoväri, vanteet, sisätilojen muotoilu ja suorituskykyvarusteet. Näe hinta-arvio ja tekniset erot reaaliajassa.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                
+                <!-- Left: 2D Visualizer Canvas & Car Render -->
+                <div class="lg:col-span-7 glass-panel rounded-2xl p-6 sm:p-8 border border-gray-800 sticky top-28">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <span id="cfgModelTag" class="text-xs text-porsche-red font-mono uppercase tracking-wider">Porsche 911 GT3 RS</span>
+                            <h3 id="cfgCarTitle" class="text-2xl font-bold porsche-font text-white">Custom GT3 RS</h3>
+                        </div>
+                        <button onclick="toggleHeadlights()" id="lightToggleBtn" class="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-xs text-gray-200 rounded-lg border border-gray-700 flex items-center gap-2">
+                            <i class="fa-solid fa-lightbulb text-yellow-400"></i>
+                            <span id="lightStatusText">Valot: Päällä</span>
+                        </button>
+                    </div>
+
+                    <!-- Configurator SVG Visualization Container -->
+                    <div class="relative bg-gradient-to-b from-gray-900/90 to-black rounded-xl p-6 my-4 border border-gray-800 min-h-[280px] flex items-center justify-center overflow-hidden">
+                        
+                        <!-- Dynamic SVG Car Model -->
+                        <svg id="configCarSvg" class="w-full h-56 transition-all duration-300" viewBox="0 0 500 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Shadow -->
+                            <ellipse cx="250" cy="182" rx="220" ry="14" fill="#000000" opacity="0.9"/>
+                            
+                            <!-- Main Body -->
+                            <path id="cfgBodyPath" d="M 40 145 C 50 140, 70 120, 110 115 C 150 110, 200 80, 270 75 C 340 70, 400 90, 440 120 C 460 130, 470 145, 465 155 C 460 160, 40 160, 40 145 Z" fill="#D5001C" class="transition-all duration-500"/>
+                            
+                            <!-- Aerodynamic Hood Vents -->
+                            <path d="M 330 95 L 360 97 L 355 102 L 325 100 Z" fill="#111" opacity="0.7"/>
+                            
+                            <!-- Wing / Spoiler -->
+                            <g id="cfgSpoilerGroup">
+                                <path d="M 50 115 L 30 70 L 75 70 L 85 110 Z" fill="#171717" stroke="#333" stroke-width="2"/>
+                                <path id="cfgSpoilerTop" d="M 20 70 L 95 68 L 95 62 L 20 62 Z" fill="#D5001C" class="transition-all duration-500"/>
+                            </g>
+
+                            <!-- Windows -->
+                            <path d="M 160 105 C 190 82, 250 78, 320 85 C 360 92, 390 115, 395 120 L 160 120 Z" fill="#0F172A" opacity="0.95"/>
+                            <path d="M 200 100 C 240 85, 290 85, 330 92 L 310 115 L 210 115 Z" fill="#FFFFFF" opacity="0.18"/>
+
+                            <!-- Wheels -->
+                            <g id="cfgFrontWheel">
+                                <circle cx="375" cy="155" r="34" fill="#0A0A0C"/>
+                                <circle id="cfgRimColorFront" cx="375" cy="155" r="26" fill="#1A1A1A" stroke="#C5A059" stroke-width="4"/>
+                                <rect x="360" y="145" width="8" height="18" fill="#D5001C" rx="2"/>
+                                <path id="cfgSpokesFront" d="M 375 130 L 375 180 M 350 155 L 400 155 M 357 137 L 393 173 M 357 173 L 393 137" stroke="#CBD5E1" stroke-width="3"/>
+                            </g>
+
+                            <g id="cfgRearWheel">
+                                <circle cx="125" cy="155" r="34" fill="#0A0A0C"/>
+                                <circle id="cfgRimColorRear" cx="125" cy="155" r="26" fill="#1A1A1A" stroke="#C5A059" stroke-width="4"/>
+                                <rect x="110" y="145" width="8" height="18" fill="#D5001C" rx="2"/>
+                                <path id="cfgSpokesRear" d="M 125 130 L 125 180 M 100 155 L 150 155 M 107 137 L 143 173 M 107 173 L 143 137" stroke="#CBD5E1" stroke-width="3"/>
+                            </g>
+
+                            <!-- Headlight & Cone -->
+                            <g id="cfgHeadlightGroup">
+                                <polygon id="cfgLightBeam" points="445,133 500,100 500,170" fill="url(#lightGradient)" opacity="0.6"/>
+                                <circle cx="442" cy="133" r="4" fill="#FFFFFF"/>
+                            </g>
+                            
+                            <defs>
+                                <linearGradient id="lightGradient" x1="445" y1="133" x2="500" y2="133" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+                                    <stop offset="100%" stop-color="#38BDF8" stop-opacity="0"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+
+                    <!-- Configurator Quick Specs Bar -->
+                    <div class="grid grid-cols-4 gap-2 text-center py-3 bg-porsche-black/80 rounded-xl border border-gray-800 text-xs">
+                        <div>
+                            <span class="text-gray-400 block">Malli</span>
+                            <span id="specModelName" class="font-bold text-white">911 GT3 RS</span>
+                        </div>
+                        <div>
+                            <span class="text-gray-400 block">Teho</span>
+                            <span id="specPower" class="font-bold text-porsche-red">525 HV</span>
+                        </div>
+                        <div>
+                            <span class="text-gray-400 block">0-100 km/h</span>
+                            <span id="specAccel" class="font-bold text-white">3.2 s</span>
+                        </div>
+                        <div>
+                            <span class="text-gray-400 block">Huippunopeus</span>
+                            <span id="specTopSpeed" class="font-bold text-white">296 km/h</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Customization Options Form -->
+                <div class="lg:col-span-5 space-y-8">
+                    
+                    <!-- 1. Model Selector -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">1. Valitse Perusmalli</label>
+                        <select id="cfgModelSelect" onchange="onModelChange()" class="w-full bg-porsche-cardBg border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-porsche-red font-medium">
+                            <option value="gt3rs">Porsche 911 GT3 RS (Alkaen 415 000 €)</option>
+                            <option value="taycan">Porsche Taycan Turbo S (Alkaen 225 000 €)</option>
+                            <option value="cayenne">Porsche Cayenne Turbo E-Hybrid (Alkaen 198 500 €)</option>
+                            <option value="cayman">Porsche 718 Cayman GT4 RS (Alkaen 265 000 €)</option>
+                        </select>
+                    </div>
+
+                    <!-- 2. Paint Color Selection -->
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <label class="text-xs font-bold uppercase tracking-wider text-gray-400">2. Ulkoväri (Ulkomaali)</label>
+                            <span id="selectedColorName" class="text-xs font-semibold text-porsche-gold">Guards Red (Vakioväri)</span>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="setPaint('#D5001C', 'Guards Red', 0)" class="w-10 h-10 rounded-full bg-[#D5001C] border-2 border-white ring-2 ring-porsche-red paint-swatch focus:outline-none" title="Guards Red"></button>
+                            <button onclick="setPaint('#0E0E10', 'Jet Black Metallic', 1450)" class="w-10 h-10 rounded-full bg-[#0E0E10] border-2 border-gray-600 paint-swatch focus:outline-none" title="Jet Black Metallic (+1 450 €)"></button>
+                            <button onclick="setPaint('#F8FAFC', 'Carrara White Metallic', 1450)" class="w-10 h-10 rounded-full bg-[#F8FAFC] border-2 border-gray-600 paint-swatch focus:outline-none" title="Carrara White Metallic (+1 450 €)"></button>
+                            <button onclick="setPaint('#003B95', 'Gentian Blue Metallic', 1450)" class="w-10 h-10 rounded-full bg-[#003B95] border-2 border-gray-600 paint-swatch focus:outline-none" title="Gentian Blue Metallic (+1 450 €)"></button>
+                            <button onclick="setPaint('#C5A059', 'Neodyme Gold Special', 3900)" class="w-10 h-10 rounded-full bg-[#C5A059] border-2 border-gray-600 paint-swatch focus:outline-none" title="Neodyme Gold Special (+3 900 €)"></button>
+                            <button onclick="setPaint('#15803D', 'Python Green Special', 3900)" class="w-10 h-10 rounded-full bg-[#15803D] border-2 border-gray-600 paint-swatch focus:outline-none" title="Python Green (+3 900 €)"></button>
+                        </div>
+                    </div>
+
+                    <!-- 3. Wheels Selection -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">3. Vanteet & Viimeistely</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick="setWheels('#C5A059', 0, '20/21 GT3 Neodyme')" class="wheel-opt p-3 bg-porsche-cardBg border border-porsche-red rounded-xl text-left hover:border-porsche-red transition-all">
+                                <span class="block text-xs font-bold text-white">20/21" GT3 Neodyme</span>
+                                <span class="text-[11px] text-gray-400">Vakiovaruste (0 €)</span>
+                            </button>
+                            <button onclick="setWheels('#171717', 1850, '20/21 Satin Black')" class="wheel-opt p-3 bg-porsche-cardBg border border-gray-800 rounded-xl text-left hover:border-porsche-red transition-all">
+                                <span class="block text-xs font-bold text-white">20/21" Satin Black</span>
+                                <span class="text-[11px] text-gray-400">+1 850 €</span>
+                            </button>
+                            <button onclick="setWheels('#CBD5E1', 2400, '21" RS Spyder Silver')" class="wheel-opt p-3 bg-porsche-cardBg border border-gray-800 rounded-xl text-left hover:border-porsche-red transition-all">
+                                <span class="block text-xs font-bold text-white">21" RS Spyder Silver</span>
+                                <span class="text-[11px] text-gray-400">+2 400 €</span>
+                            </button>
+                            <button onclick="setWheels('#D5001C', 3100, '20/21 Guards Red Accent')" class="wheel-opt p-3 bg-porsche-cardBg border border-gray-800 rounded-xl text-left hover:border-porsche-red transition-all">
+                                <span class="block text-xs font-bold text-white">20/21" Red Edition</span>
+                                <span class="text-[11px] text-gray-400">+3 100 €</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 4. Performance & Luxury Packages -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">4. Suorituskyky & Lisävarusteet</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center justify-between p-3 bg-porsche-cardBg border border-gray-800 rounded-xl cursor-pointer hover:border-gray-700">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" onchange="updateTotalPrice()" id="optPCCB" data-price="11500" class="w-4 h-4 accent-porsche-red rounded">
+                                    <span class="text-xs font-semibold text-gray-200">PCCB - Keraamiset komposiittijarrut</span>
+                                </div>
+                                <span class="text-xs font-mono text-porsche-gold">+11 500 €</span>
+                            </label>
+                            
+                            <label class="flex items-center justify-between p-3 bg-porsche-cardBg border border-gray-800 rounded-xl cursor-pointer hover:border-gray-700">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" onchange="updateTotalPrice()" id="optWeissach" data-price="24800" class="w-4 h-4 accent-porsche-red rounded">
+                                    <span class="text-xs font-semibold text-gray-200">Weissach-suorituskykypaketti (Hiilikuitu)</span>
+                                </div>
+                                <span class="text-xs font-mono text-porsche-gold">+24 800 €</span>
+                            </label>
+
+                            <label class="flex items-center justify-between p-3 bg-porsche-cardBg border border-gray-800 rounded-xl cursor-pointer hover:border-gray-700">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" onchange="updateTotalPrice()" id="optBose" data-price="2100" class="w-4 h-4 accent-porsche-red rounded">
+                                    <span class="text-xs font-semibold text-gray-200">BOSE® Surround Sound System</span>
+                                </div>
+                                <span class="text-xs font-mono text-porsche-gold">+2 100 €</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Live Total Price & Summary CTA -->
+                    <div class="p-6 bg-gradient-to-r from-porsche-cardBg to-gray-900 border border-porsche-red/40 rounded-2xl">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wider text-gray-400">Arvioitu Kokonaishinta</span>
+                            <span id="cfgTotalPrice" class="text-3xl font-black porsche-font text-white">415 000 €</span>
+                        </div>
+                        <p class="text-[11px] text-gray-400 mb-4">Sisältää arvioidun autoveron ja ALV 25.5% Suomessa.</p>
+                        
+                        <div class="flex gap-3">
+                            <button onclick="saveConfiguration()" class="w-full py-3 bg-porsche-red hover:bg-red-700 text-white font-bold rounded-xl shadow-md red-glow transition-all text-sm flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-bookmark"></i>
+                                <span>Tallenna & Varaa Tästä</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TEKNOLOGIA & DNA OSIO -->
+    <section id="dna" class="py-24 bg-porsche-black relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                
+                <div>
+                    <span class="text-porsche-red text-xs font-bold tracking-widest uppercase">Innovaatio & Suorituskyky</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold porsche-font text-white mt-2 leading-tight">
+                        SYNTYNYT RADOLLA. <br>
+                        SUUNNITTELTU ARKEEN.
+                    </h2>
+                    
+                    <p class="text-gray-400 my-6 text-sm sm:text-base leading-relaxed">
+                        Jokainen Porsche on osoitus insinööritaidon huippusaavutuksista. Weissachin kehityskeskuksesta kumpuavat innovaatiot takaavat, että jokainen kaarre on elämys.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-porsche-red/10 border border-porsche-red/30 flex items
